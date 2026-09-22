@@ -1,0 +1,433 @@
+/* Make padding and borders count inside an element's width and height */
+* {
+    box-sizing: border-box;
+}
+
+/* Variables: colors and sizes we reuse. Change them here and it updates everywhere. */
+html,
+body {
+    --border-radius: 100px;
+    --blue: #3070b6;
+    --orange: #e19c3c;
+    --red: #d93731;
+    --green: #235126;
+    --cream: #efe7d5;
+    --gutter: 3.125vw 6.25vw;
+
+    margin: 0;
+    padding: 0;
+    background: var(--orange);
+    color: #ffffff;
+    font-size: 20px;
+    font-family: 'Syne', sans-serif;
+}
+
+h1 {
+    font-size: 70px;
+    line-height: 1em;
+    margin: 0px;
+}
+
+h2 {
+    font-size: 60px;
+    margin: 0px;
+}
+
+a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* Every section fills the screen (minus the 100px navigation bar) */
+section {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 100px);
+    top: 100px;
+    z-index: 2;
+}
+
+/* Sticky sections stay in place while the next one slides over them */
+section.sticky {
+    position: sticky;
+    margin-top: 100px;
+}
+
+section.full-screen {
+    height: 100vh;
+    top: 0;
+    margin-top: 0;
+    z-index: 3;
+}
+
+/* navigation */
+
+nav {
+    position: fixed;
+    width: 100%;
+    height: 100px;
+    top: 0;
+    left: 0;
+    font-size: 20px;
+    z-index: 1;
+    /* flex puts the logo and the links side by side; space-between pushes them to opposite sides */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 45px;
+}
+
+nav .logo img {
+    display: block;
+    height: 40px;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    list-style: none;
+    margin-left: 45px;
+}
+
+nav ul li a {
+    color: #000000;
+    font-family: 'Space Mono', monospace;
+}
+
+/* about (bio) section */
+
+section.about .empty {
+    flex-basis: 37.5vw;
+    background: var(--red);
+    border-radius: var(--border-radius);
+    transition: flex-basis 1s cubic-bezier(0,.9,.4,.99);
+}
+
+/* the band photo fills the block; overflow hidden keeps the rounded corners */
+section.about .empty {
+    overflow: hidden;
+}
+
+section.about .empty img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+section.about article {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+section.about article .title {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    background: var(--blue);
+    border-radius: var(--border-radius);
+    padding: var(--gutter);
+    transition: flex-basis 1s cubic-bezier(0,.9,.4,.99);
+}
+
+section.about article .description {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background: var(--cream);
+    border-radius: var(--border-radius);
+    padding: var(--gutter);
+    color: #000000;
+}
+
+/* card sections (música, shows, prensa, shop) */
+
+section.card article {
+    display: flex;
+    width: 100%;
+    backdrop-filter: blur(10px);
+}
+
+section.card figure {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-basis: 56.25vw;
+    margin: 0;
+    background: var(--red);
+    border-radius: var(--border-radius);
+    max-width: 62.5vw;
+    transition: flex-basis 1s cubic-bezier(0,.9,.4,.99);
+}
+
+section.card figure img {
+    width: 40%;
+}
+
+section.card .text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    background: var(--green);
+    padding: var(--gutter);
+    border-radius: var(--border-radius);
+}
+
+section.card .text a {
+    font-family: 'Space Mono', monospace;
+}
+
+/* the list of shows: remove the bullet points and add some space */
+section.card .text ul {
+    margin: 20px 0;
+    padding: 0;
+    list-style: none;
+}
+
+section.card .text li {
+    margin-bottom: 10px;
+}
+
+/* the shows/prensa lists and the shop's Bandcamp player are tall, so their text scrolls if it doesn't fit */
+section.card.card-shows .text,
+section.card.card-press .text,
+section.card.card-shop .text {
+    overflow-y: auto;
+    /* "safe center" centers the text, but never pushes the top out of view */
+    justify-content: safe center;
+}
+
+section.card.card-shows .text li,
+section.card.card-press .text li {
+    margin-bottom: 8px;
+}
+
+section.card.card-shows .text li span,
+section.card.card-press .text li span {
+    opacity: 0.85;
+}
+
+/* the music card shows the cover art, so it is bigger than the palm on the other cards */
+section.card.card-music figure img {
+    width: 60%;
+}
+
+/* card animations */
+
+section.card.card-music figure img {
+    animation-name: float;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: cubic-bezier(.77,.28,.42,.93);
+}
+
+section.card.card-shows figure img {
+    animation-name: scale;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: cubic-bezier(.77,.28,.42,.93);
+}
+
+section.card.card-press figure img {
+    animation-name: rotate;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: cubic-bezier(.77,.28,.42,.93);
+}
+
+section.card.card-shop figure img {
+    animation-name: float;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: cubic-bezier(.77,.28,.42,.93);
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(-5%);
+    }
+    100% {
+        transform: translateY(5%);
+    }
+}
+
+@keyframes scale {
+    0% {
+        transform: scale(.75);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(180deg);
+    }
+}
+
+/* card colors: each card has its own picture color and title color */
+
+section.card.card-music figure {
+    background: var(--red);
+}
+
+section.card.card-music .text h2,
+section.card.card-music .text a {
+    color: var(--orange);
+}
+
+section.card.card-shows figure {
+    background: var(--cream);
+}
+
+section.card.card-shows .text h2,
+section.card.card-shows .text a {
+    color: var(--orange);
+}
+
+section.card.card-press figure {
+    background: var(--blue);
+}
+
+section.card.card-press .text h2,
+section.card.card-press .text a {
+    color: var(--orange);
+}
+
+section.card.card-shop figure {
+    background: var(--cream);
+}
+
+section.card.card-shop .text h2,
+section.card.card-shop .text a {
+    color: var(--orange);
+}
+
+/* contact section */
+
+section.contact {
+    align-items: center;
+    justify-content: center;
+    /* stops spread further apart than before so each color fades into the next more gently */
+    background: linear-gradient(var(--blue), var(--orange) 30%, var(--red) 70%, var(--cream));
+    border-radius: var(--border-radius);
+}
+
+/* remove the bullet points from the email/social links list */
+section.contact ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+section.contact a {
+    font-size: 80px;
+    color: #000000;
+    font-weight: bold;
+    transition: filter 2s cubic-bezier(.77,.28,.42,.93);
+    will-change: filter;
+}
+
+/* blur the email when the mouse is over it */
+section.contact a:hover {
+    filter: blur(20px);
+}
+
+/* responsive: these rules only apply on screens 768px wide or smaller (phones) */
+
+@media only screen and (max-width: 768px) {
+    html, body {
+        --border-radius: 50px;
+        --gutter: 6.25vw;
+    }
+
+    h1 {
+        font-size: 40px;
+    }
+
+    h2 {
+        font-size: 40px;
+    }
+
+    /* smaller menu so all six links fit on a phone */
+    nav {
+        font-size: 14px;
+    }
+
+    /* on phones the logo goes on top and the links go underneath */
+    nav {
+        flex-direction: column;
+        justify-content: center;
+        padding: 0;
+    }
+
+    nav .logo img {
+        height: 28px;
+    }
+
+    nav ul {
+        height: auto;
+        margin-top: 12px;
+    }
+
+    nav ul li {
+        margin-left: 12px;
+    }
+
+    nav ul li:first-child {
+        margin-left: 0;
+    }
+
+    /* stack the band photo on top of the title and description */
+    section.about {
+        flex-direction: column;
+    }
+
+    section.about .empty {
+        /* was a % of width (37.5vw), but now it's stacked so that would make it too tall; use viewport height instead, like the cards' pictures */
+        flex-basis: 25vh;
+    }
+
+    section.card article {
+        flex-direction: column;
+    }
+
+    section.card figure {
+        flex-basis: 25vh;
+        /* on desktop this is capped at 62.5vw so it doesn't fill the row;
+           on phones the cards stack, so let it go full width or it stays narrow */
+        max-width: 100%;
+    }
+
+    section.card figure img {
+        width: 20%;
+    }
+
+    section.card.card-music figure img {
+        /* sized by width like the other cards' images, just a bit bigger;
+           sizing by height instead made it huge on taller phones */
+        width: 30%;
+    }
+
+    section.contact a {
+        font-size: 36px;
+        transform: rotate(90deg);
+    }
+
+}
