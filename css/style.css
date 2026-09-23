@@ -412,8 +412,10 @@ section.contact a:hover {
     }
 
     /* the bio can be longer than what fits on a phone screen, so let it scroll instead of shrinking the photo */
-    section.about .description {
+    section.about article .description {
         overflow-y: auto;
+        /* centering (the desktop default) would cut off the top and bottom of long text; start at the top instead */
+        align-items: flex-start;
     }
 
     section.card article {
