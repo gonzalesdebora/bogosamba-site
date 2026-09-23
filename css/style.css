@@ -360,6 +360,9 @@ section.contact a:hover {
     html, body {
         --border-radius: 50px;
         --gutter: 6.25vw;
+        /* the base text (paragraphs, lists, links) was sized for desktop (20px); shrink it
+           so it takes up less room, and cards don't need to grow as tall to fit everything */
+        font-size: 16px;
     }
 
     h1 {
