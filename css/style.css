@@ -420,8 +420,22 @@ section.contact a:hover {
         align-items: flex-start;
     }
 
+    section.card {
+        /* a long list (Shows) or long text can need more room than one screen; grow the
+           card instead of scrolling inside it, like the Sobre section above */
+        height: auto;
+        min-height: calc(100vh - 100px);
+    }
+
     section.card article {
         flex-direction: column;
+    }
+
+    /* the card now grows to fit everything, so scrolling inside the text box is no longer needed */
+    section.card.card-shows .text,
+    section.card.card-press .text,
+    section.card.card-shop .text {
+        overflow-y: visible;
     }
 
     section.card figure {
