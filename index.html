@@ -246,6 +246,13 @@
 
             function handleMouseMove( event ) {
 
+                // On phones the boxes stack vertically (see the @media rule in style.css),
+                // so flexBasis controls their height instead of their width there.
+                // Skip the effect below that breakpoint or it shrinks the photo to almost nothing.
+                if ( window.innerWidth <= 768 ) {
+                    return;
+                }
+
                 // event.clientX and event.clientY are the mouse position in pixels
                 // Changing flexBasis makes the colored blocks grow and shrink
                 emptyElement.style.flexBasis = event.clientX + 'px';
