@@ -407,6 +407,13 @@ section.contact a:hover {
     section.about .empty {
         /* was a % of width (37.5vw), but now it's stacked so that would make it too tall; use viewport height instead, like the cards' pictures */
         flex-basis: 25vh;
+        /* without this, a long bio squeezes the photo down to almost nothing to make room for the text */
+        flex-shrink: 0;
+    }
+
+    /* the bio can be longer than what fits on a phone screen, so let it scroll instead of shrinking the photo */
+    section.about .description {
+        overflow-y: auto;
     }
 
     section.card article {
