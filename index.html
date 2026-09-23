@@ -1,13 +1,71 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <title>Bogosamba</title>
+        <!-- charset goes first so the browser reads the rest of the page with the right character encoding -->
+        <meta charset="UTF-8">
+
+        <!-- shows up as the browser tab title and the clickable headline in Google search results -->
+        <title>Bogosamba – Banda de fusión colombo-brasileña</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <!-- Google Analytics: sends anonymous visit data (pages viewed, roughly where visitors come from)
+             to a Google Analytics dashboard so you can see how many people visit the site.
+             Google recommends loading it near the top of <head> so it starts tracking as early as possible. -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-TQB4V3G7HJ"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            // gtag records an event into dataLayer; Google's script (loaded above) reads it and sends it off
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', 'G-TQB4V3G7HJ');
+        </script>
+
+        <!-- the description search engines usually show under the title in results -->
+        <meta name="description" content="Bogosamba es una banda de fusión colombo-brasileña. Escucha su música, entérate de próximos shows, lee la prensa y compra su disco." />
+        <!-- tells search engines this is the one true URL for this page, avoiding duplicate-content confusion -->
+        <link rel="canonical" href="https://bogosamba.com/" />
+        <!-- the little icon shown in the browser tab -->
+        <link rel="icon" href="img/palm.png" />
+
+        <!-- Open Graph tags: control how this page looks when someone shares the link on Facebook, WhatsApp, etc. -->
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Bogosamba – Banda de fusión colombo-brasileña" />
+        <meta property="og:description" content="Escucha la música de Bogosamba, entérate de próximos shows, lee la prensa y compra su disco." />
+        <meta property="og:url" content="https://bogosamba.com/" />
+        <meta property="og:image" content="https://bogosamba.com/img/social-share.jpg" />
+        <!-- telling platforms the exact size avoids them having to guess before showing a preview -->
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:locale" content="es_CO" />
+
+        <!-- Twitter/X uses its own version of the same preview tags -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Bogosamba – Banda de fusión colombo-brasileña" />
+        <meta name="twitter:description" content="Escucha la música de Bogosamba, entérate de próximos shows, lee la prensa y compra su disco." />
+        <meta name="twitter:image" content="https://bogosamba.com/img/social-share.jpg" />
+
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Space+Mono&family=Syne:wght@400;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/style.css" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta charset="UTF-8">
+
+        <!-- Structured data: a machine-readable summary of the page that lets Google show a richer
+             result (e.g. band name, image and social links) instead of just a plain blue link -->
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "MusicGroup",
+          "name": "Bogosamba",
+          "url": "https://bogosamba.com/",
+          "image": "https://bogosamba.com/img/banda.jpg",
+          "genre": "Fusión colombo-brasileña",
+          "sameAs": [
+            "https://www.youtube.com/@bogosamba",
+            "https://www.instagram.com/bogosamba/",
+            "https://www.facebook.com/bogosamba/"
+          ]
+        }
+        </script>
     </head>
     <body>
 
