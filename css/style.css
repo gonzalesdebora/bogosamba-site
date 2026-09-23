@@ -185,6 +185,11 @@ section.card .text a {
     font-family: 'Space Mono', monospace;
 }
 
+/* space between the "Shop" heading and the Bandcamp player below it */
+section.card.card-shop .text iframe {
+    margin-top: 20px;
+}
+
 /* the list of shows: remove the bullet points and add some space */
 section.card .text ul {
     margin: 20px 0;
